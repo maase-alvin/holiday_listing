@@ -1,0 +1,110 @@
+Question 3
+Your task is to implement a holiday offers listing 
+based on a GraphQL API using React and Apollo Client.
+
+Requirements
+1. Define a React component
+
+2. Fetch 10 latest holiday offers (by DAT_ADDED) 
+using a GrapQL API and display them in 
+descending order.
+
+3, Don't overfetch; request as little data from the API as possible.
+
+4. For each offer use the provided OfferTilt component.
+
+5. Pass the following properties to the OfferTile:
+name - name from the API;
+visitedCount - visitedCount from the API;
+price - concatenated value and currency from the API with an empty space between them;
+imageUrl - imageUrl from the API;
+description - description from the API (if null, pass an empty string);
+clickHandler - a function that will send a markVisited mutation with the current offer ID.
+
+6. Make sure the UI updates the visitedCount value when the markVisited mutation responds.
+
+7. Display a dic with the text Loading offers while the holiday offers are loading.
+
+8. Display a div with the text Failed to load offers if an error occurs.
+
+The component must be exported as the default export.
+
+Hints
+
+The ApolloProvider is already set up. Just use the Apollo Client library.
+To import OfferTile, use import OfferTile from "./OfferTile.js".
+
+GRAPHQL schema:
+type Offer{
+id: String!
+name: String!
+imageUrl: String!
+dateAdded: String!
+description: String!
+value: Float!
+currency: String!
+visitedCount: Int!
+}
+enum SortBy {
+NAME
+DATE_ADDED
+PRICE
+}
+
+enum OrderBy {
+ASC
+DESC
+}
+
+input Sort {
+by: SortBy!
+order: OrderBy!
+}
+
+type Query {
+offers(limit: Int, sort: Sort): [Offer!]!
+}
+type Mutation {
+markedVisited(offerId: String!): Offer
+}
+
+You can use 
+JavaScript ES2020
+React v17.0.1
+@apollo/client v 3.3.7
+
+Hence complete the code below
+"import React from "react";
+import { useQuery, useMutation } from "@apollo/client";
+import OfferTile from "./OfferTile.js";
+
+export default function OfferListing() {
+    // Use console.log() for debugging
+    const LOADING = "Loading offers";
+    const ERROR = "Failed to load offers";
+
+    return "Return OfferTiles here";
+}"
+
+MAKE SURE THE BELOW ARE MET
+The code should show "Failed to load offers" on loading error
+The code should show "Loading offers" while loading offers
+The code should display 10 offers
+
+The code should display 10 latest offers in descending order (by dateAdded)
+
+The code should concatenate value and currency
+
+The code should pass an empty string when description undefined
+
+The code should display all offers with correct data
+
+The code should send mutation on clickHandler call
+
+The code should update visitedCount after receiving mutation response
+
+The code shouldn't overfetch query
+
+The code shouldn't overfetch mutation
+
+Write in one script
